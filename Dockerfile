@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-RUN apk --update add openjdk7-jre curl
+RUN apk --no-cache add openjdk7-jre curl
 
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
