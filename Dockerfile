@@ -14,4 +14,4 @@ RUN adduser -h $HOME -D jenkins-slave \
 
 USER jenkins-slave
 
-CMD ["sh", "-c", "java -jar /usr/share/jenkins/swarm-client-jar-with-dependencies.jar -master '${SWARM_MASTER}' -executors ${SWARM_EXECUTORS} -labels '${SWARM_LABELS}' -name '${SWARM_NAME}' -fsroot '${HOME}'"]
+CMD ["sh", "-c", "java -jar /usr/share/jenkins/swarm-client-jar-with-dependencies.jar -master \"$SWARM_MASTER\" -executors $SWARM_EXECUTORS -labels \"$SWARM_LABELS\" -name \"$SWARM_NAME\" -fsroot \"$HOME\""]
