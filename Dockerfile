@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-RUN apk --no-cache add openjdk7-jre curl docker
+RUN apk --no-cache add openjdk7-jre curl docker openssh-client
 
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
