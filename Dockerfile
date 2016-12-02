@@ -1,8 +1,14 @@
 FROM openjdk:8-jre
 
 RUN apt-get update \
- && apt-get install -y git curl docker.io openssh-client --no-install-recommends \
- && rm -rf /var/lib/apt/lists/*
+ && apt-get install -y --no-install-recommends \
+      curl \
+      docker.io \
+      git \
+      openssh-client \
+      python-pip \
+ && rm -rf /var/lib/apt/lists/* \
+ && pip install awscli
 
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
