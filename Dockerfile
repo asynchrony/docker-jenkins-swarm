@@ -1,6 +1,8 @@
-FROM alpine:3.4
+FROM openjdk:8-jre
 
-RUN apk --no-cache add openjdk7-jre curl docker openssh-client
+RUN apt-get update \
+ && apt-get install -y git curl docker.io openssh-client --no-install-recommends \
+ && rm -rf /var/lib/apt/lists/*
 
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
