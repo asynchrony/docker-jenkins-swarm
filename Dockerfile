@@ -17,6 +17,7 @@ RUN apt-get update \
       xvfb \
       libxss1 \
       gconf2 \
+      libasound2 \
  && rm -rf /var/lib/apt/lists/* \
  && pip install awscli
 
