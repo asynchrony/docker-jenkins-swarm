@@ -14,6 +14,10 @@ RUN apt-get update \
       git \
       openssh-client \
       python-pip \
+      xvfb \
+      libxss1 \
+      gconf2 \
+      libasound2 \
  && rm -rf /var/lib/apt/lists/* \
  && pip install awscli
 
