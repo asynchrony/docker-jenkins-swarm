@@ -16,6 +16,7 @@ RUN apt-get update \
       python-pip \
       xvfb \
       libxss1 \
+      gconf2 \
  && rm -rf /var/lib/apt/lists/* \
  && pip install awscli
 
