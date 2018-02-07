@@ -15,6 +15,7 @@ RUN apt-get update \
       openssh-client \
       python-pip \
       xvfb \
+      libxss1 \
  && rm -rf /var/lib/apt/lists/* \
  && pip install awscli
 
