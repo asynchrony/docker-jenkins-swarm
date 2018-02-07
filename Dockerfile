@@ -5,12 +5,13 @@ RUN apt-get update \
       apt-transport-https \
       ca-certificates \
       gnupg2 \
- && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
- && echo 'deb https://apt.dockerproject.org/repo debian-jessie main' >> /etc/apt/sources.list.d/docker.list \
+      software-properties-common \
+ && curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add - \
+ && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
       curl \
-      docker-engine=1.11.2-0~jessie \
+      docker-ce \
       git \
       openssh-client \
       python-pip \
@@ -19,7 +20,7 @@ RUN apt-get update \
       gconf2 \
       libasound2 \
  && rm -rf /var/lib/apt/lists/* \
- && pip install awscli
+ && pip install awscli==1.11.18
 
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
