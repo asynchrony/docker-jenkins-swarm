@@ -25,7 +25,7 @@ RUN apt-get update \
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
 ENV SWARM_NAME jenkins-linux
-ENV SWARM_VERSION 2.2
+ENV SWARM_VERSION 3.3
 ENV HOME /home/jenkins-slave
 
 RUN mkdir -p $HOME \
