@@ -27,6 +27,12 @@ RUN apt-get update \
       libasound2 \
  && rm -rf /var/lib/apt/lists/* \
  && pip3 install --no-cache-dir awscli \
+ && echo "\nVERSIONS INSTALLED:\n" \
+ && aws --v \
+ && docker -v \
+ && python --version \
+ && python3 --version \
+ && pip3 -V
 
 RUN mkdir -p $HOME \
  && curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$SWARM_VERSION/swarm-client-$SWARM_VERSION.jar
