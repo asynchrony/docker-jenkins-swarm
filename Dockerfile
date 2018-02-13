@@ -15,18 +15,18 @@ RUN apt-get update \
  && curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add - \
  && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
  && apt-get update \
- && apt-get install -y --no-install-recommends \
+ && apt-get install -y \
       curl \
       docker-ce \
       git \
       openssh-client \
-      python-pip \
+      python3-pip \
       xvfb \
       libxss1 \
       gconf2 \
       libasound2 \
  && rm -rf /var/lib/apt/lists/* \
- && pip install awscli==1.11.18
+ && pip3 install --no-cache-dir awscli \
 
 RUN mkdir -p $HOME \
  && curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$SWARM_VERSION/swarm-client-$SWARM_VERSION.jar
