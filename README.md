@@ -3,8 +3,7 @@ This container can be used to create and attach Jenkins slaves to a master node.
 - The Swarm plugin must be installed
 - TCP port for JNLP agents should be fixed to 50000
   - For ease of inital config, enable all protocol types (JNLP1-JNLP4)
-    - Once communication is working, disable all protocols `except` JNLP4
-  - These can be disabled once you get the slave/master comms working
+  - Once communication is working, disable all protocols `except` JNLP4
 - Authorization should be set to `matrix-based` mode, with the following set for anonymous users
   - Overall: READ
   - Agent: CONNECT, CREATE
