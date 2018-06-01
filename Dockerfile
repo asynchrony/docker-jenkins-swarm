@@ -4,7 +4,7 @@ ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
 ENV SWARM_NAME jenkins-linux
 ENV SWARM_VERSION 3.9
-ENV HOME /home/jenkins-slave
+ENV HOME /home/jenkins
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -34,7 +34,12 @@ RUN apt-get update \
  && python3 --version \
  && pip3 -V
 
-RUN mkdir -p $HOME \
- && curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$SWARM_VERSION/swarm-client-$SWARM_VERSION.jar
+RUN groupadd -g 9999 jenkins \
+    && useradd -r -u 9999 -g jenkins jenkins
 
-CMD ["sh", "-c", "java -jar /usr/share/jenkins/swarm-client-$SWARM_VERSION.jar -master \"$SWARM_MASTER\" -executors $SWARM_EXECUTORS -labels \"$SWARM_LABELS\" -name \"$SWARM_NAME\" -fsroot \"$HOME\""]
+RUN mkdir -p $HOME \
+ && curl --create-dirs -sSLo $HOME/swarm-client-$SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$SWARM_VERSION/swarm-client-$SWARM_VERSION.jar \
+ && chown -R jenkins:jenkins $HOME
+USER jenkins
+
+CMD ["sh", "-c", "java -jar $HOME/swarm-client-$SWARM_VERSION.jar -master \"$SWARM_MASTER\" -executors $SWARM_EXECUTORS -labels \"$SWARM_LABELS\" -name \"$SWARM_NAME\" -fsroot \"$HOME\""]
