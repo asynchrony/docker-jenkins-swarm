@@ -35,7 +35,8 @@ RUN apt-get update \
  && pip3 -V
 
 RUN groupadd -g 9999 jenkins \
-    && useradd -r -u 9999 -g jenkins jenkins
+    && useradd -r -u 9999 -g jenkins jenkins \
+    && usermod -a -G docker jenkins
 
 RUN mkdir -p $HOME \
  && curl --create-dirs -sSLo $HOME/swarm-client-$SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$SWARM_VERSION/swarm-client-$SWARM_VERSION.jar \
