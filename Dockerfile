@@ -35,6 +35,9 @@ RUN groupadd -g 233 docker \
  && python3 --version \
  && pip3 -V
 
+RUN git config --global user.email "jenkins@jenkins.com" \
+ && git config --global user.name "Leroy Jenkins"
+
 RUN groupadd -g 9999 jenkins \
     && useradd -r -u 9999 -g jenkins jenkins \
     && usermod -a -G docker jenkins
