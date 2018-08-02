@@ -35,6 +35,7 @@ RUN apt-get update \
  && pip3 -V
 
 RUN groupadd -g 9999 jenkins \
+    && groupadd -g 233 docker \
     && useradd -r -u 9999 -g jenkins jenkins \
     && usermod -a -G docker jenkins
 
