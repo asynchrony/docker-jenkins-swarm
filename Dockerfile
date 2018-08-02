@@ -6,7 +6,8 @@ ENV SWARM_NAME jenkins-linux
 ENV SWARM_VERSION 3.9
 ENV HOME /home/jenkins
 
-RUN apt-get update \
+RUN groupadd -g 233 docker \
+ && apt-get update \
  && apt-get install -y --no-install-recommends \
       apt-transport-https \
       ca-certificates \
@@ -35,7 +36,6 @@ RUN apt-get update \
  && pip3 -V
 
 RUN groupadd -g 9999 jenkins \
-    && groupadd -g 233 docker \
     && useradd -r -u 9999 -g jenkins jenkins \
     && usermod -a -G docker jenkins
 
