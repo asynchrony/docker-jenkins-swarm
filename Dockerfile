@@ -3,7 +3,7 @@ FROM openjdk:8-jre
 ENV SWARM_EXECUTORS 2
 ENV SWARM_LABELS linux
 ENV SWARM_NAME jenkins-linux
-ENV SWARM_VERSION 3.9
+ENV SWARM_VERSION 3.14
 ENV HOME /home/jenkins
 
 RUN groupadd -g 233 docker \
